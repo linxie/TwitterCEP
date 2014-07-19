@@ -1,0 +1,145 @@
+﻿@font-face {
+  font-family: SegoeLtWeb;
+  src: url("/fonts/SegoeL.eot");
+  /* EOT file for IE */ }
+
+@font-face {
+  font-family: SegoeLtWeb;
+  src: url("/fonts/SegoeL.ttf");
+  /* TTF file for CSS3 browsers */ }
+
+@font-face {
+  font-family: SegoeRgWeb;
+  src: url("/fonts/SegoeRg.eot");
+  /* EOT file for IE */ }
+
+@font-face {
+  font-family: SegoeRgWeb;
+  src: url("/fonts/SegoeRg.ttf");
+  /* TTF file for CSS3 browsers */ }
+
+@font-face {
+  font-family: SegoeBlkWeb;
+  src: url("/fonts/SegoeBlk.eot");
+  /* EOT file for IE */ }
+
+@font-face {
+  font-family: SegoeBlkWeb;
+  src: url("/fonts/SegoeBlk.ttf");
+  /* TTF file for CSS3 browsers */ }
+
+body 
+{ 
+    margin: 0; 
+    padding: 0; 
+    font-family: SegoeRgWeb, Trebuchet MS, Tahoma, Verdana, Arial, sans-serif;
+    font-size: 16px; 
+    color: white; 
+    background: black; 
+    height: 100%;
+} 
+
+.hidden 
+{ 
+    display: none; 
+} 
+
+#page-container 
+{
+    width: 760px; 
+    margin: auto; 
+}
+
+#header 
+{ 
+    height: 60px; 
+} 
+h1
+{
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI Light';
+    font-size: 32pt;
+} 
+
+#tweet-summary
+{
+    background-color: #00BCF2;
+    margin-right: 310px;
+    height: 300px;
+    width: 450px;
+    /*line-height: 18px;*/
+} 
+    #tweet-summary .padding { 
+        padding: 10px; 
+    } 
+    #tweet-summary h2 { 
+        margin: 0; 
+        padding: 0; 
+        padding-bottom: 15px;
+    } 
+    #tweet-summary p { 
+        margin: 0; 
+        padding: 0; 
+        padding-bottom: 15px;
+    } 
+
+#tweet-details
+{
+    background-color: #BAD80A;
+    float: right;
+    width: 300px;
+    height: 300px;
+    /*line-height: 18px;*/
+} 
+    #tweet-details .padding { 
+        padding: 10px; 
+    }
+
+#tweet-topics
+{
+    clear: both; 
+    margin: 0;
+    padding: 0;
+}
+    #tweet-topics .topic
+    {
+        background-color: #FF8C00;
+        float: left;
+        padding: 10px;
+        height: 124px;
+        width: 124px;
+        margin-top: 10px;
+    }
+    #tweet-topics #topic2
+    {
+        margin-left: 9px;
+    }
+    #tweet-topics #topic3
+    {
+        margin-left: 9px;
+    }
+    #tweet-topics #topic4
+    {
+        margin-left: 10px;
+    }
+    #tweet-topics #topic5
+    {
+        margin-left: 10px;
+    }
+#footer
+{
+    clear: both; /*border-top: 1px solid #efefef;*/
+    padding: 10px 0px 10px 0px;
+    color: gray;
+    text-align: center;
+} 
+    #footer a { 
+        color: gray;
+        text-decoration: underline;
+    } 
+    #footer a:hover { 
+        color: white; 
+    } 
+
+

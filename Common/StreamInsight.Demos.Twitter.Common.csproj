@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{9256EE15-E376-4476-8232-914E1378E95D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>StreamInsight.Demos.Twitter.Common</RootNamespace>
+    <AssemblyName>StreamInsight.Demos.Twitter.Common</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Fleck">
+      <HintPath>..\packages\Fleck.0.9.6.13\lib\net40\Fleck.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ComplexEventProcessing, Version=21.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.ComplexEventProcessing.Adapters, Version=21.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.WindowsAzure.StorageClient, Version=1.7.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Dependencies\Microsoft.WindowsAzure.StorageClient.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=4.0.8.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Dependencies\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Entities\AzureBlobConfig.cs" />
+    <Compile Include="Entities\TweetByTopic.cs" />
+    <Compile Include="Entities\TweetSummary.cs" />
+    <Compile Include="Entities\WebSocketConfig.cs" />
+    <Compile Include="Helpers\BlobHelper.cs" />
+    <Compile Include="SentimentAnalysis\TextAnalysis.cs" />
+    <Compile Include="SourcesAndSinks\Adapters\AzureBlobFactory.cs" />
+    <Compile Include="SourcesAndSinks\Adapters\AzureDbFactory.cs" />
+    <Compile Include="SourcesAndSinks\Adapters\AzureDbPointOutput.cs" />
+    <Compile Include="SourcesAndSinks\Adapters\AzureBlobPointOutput.cs" />
+    <Compile Include="SourcesAndSinks\Adapters\WebSocketFactory.cs" />
+    <Compile Include="SourcesAndSinks\Adapters\WebSocketPointOutput.cs" />
+    <Compile Include="SourcesAndSinks\Adapters\TwitterFactory.cs" />
+    <Compile Include="SourcesAndSinks\Adapters\TwitterInputAdapter.cs" />
+    <Compile Include="Entities\AzureDbConfig.cs" />
+    <Compile Include="Entities\SentimentScore.cs" />
+    <Compile Include="Helpers\DatabaseHelper.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Entities\SentimentAnalysisResult.cs" />
+    <Compile Include="Entities\Tweet.cs" />
+    <Compile Include="Entities\TwitterConfig.cs" />
+    <Compile Include="Helpers\TwitterStreaming.cs" />
+    <Compile Include="SentimentAnalysis\Sentiment140.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

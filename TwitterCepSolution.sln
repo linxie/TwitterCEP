@@ -1,0 +1,150 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "StreamInsight.Austin.ServiceManagement", "StreamInsight.Austin.ServiceManagement", "{BE84BBBE-84D5-42C8-83EC-CA81F4C0FBA9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StreamInsight.Demos.Twitter.Client", "TwitterCEPApplication\StreamInsight.Demos.Twitter.Client.csproj", "{BEF3B617-DD2E-4818-816B-16693D6E1F36}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StreamInsight.Demos.Twitter.Common", "Common\StreamInsight.Demos.Twitter.Common.csproj", "{9256EE15-E376-4476-8232-914E1378E95D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dependencies", "Dependencies", "{B0D12904-D804-4AC3-90FA-DCFC3153BB28}"
+	ProjectSection(SolutionItems) = preProject
+		Dependencies\Microsoft.WindowsAzure.StorageClient.dll = Dependencies\Microsoft.WindowsAzure.StorageClient.dll
+		Dependencies\Newtonsoft.Json.dll = Dependencies\Newtonsoft.Json.dll
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceCommon", "ServiceManagement\ServiceCommon\ServiceCommon.csproj", "{41B16466-6066-4C13-9447-D7CF340D287E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceDeletion", "ServiceManagement\ServiceDeletion\ServiceDeletion.csproj", "{5419C4D4-E8DB-4DE1-AFC7-0B430CC02926}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceProvisioning", "ServiceManagement\ServiceProvisioning\ServiceProvisioning.csproj", "{FF2B311B-5ABD-49AA-AC25-05F30CAAB34C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Other Resources", "Other Resources", "{927DBFF8-AE9C-4FE5-8EB5-EF9FA8A8340D}"
+	ProjectSection(SolutionItems) = preProject
+		OtherResources\Hive Results - PP 2010.xlsx = OtherResources\Hive Results - PP 2010.xlsx
+		OtherResources\Logical Architecture Diagram.vsdx = OtherResources\Logical Architecture Diagram.vsdx
+		README.txt = README.txt
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SQL Azure", "SQL Azure", "{DBCC05A3-FC4B-4742-B4C2-91269593E006}"
+	ProjectSection(SolutionItems) = preProject
+		OtherResources\Create Azure DB Objects.sql = OtherResources\Create Azure DB Objects.sql
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "HadoopOnAzure", "HadoopOnAzure", "{B7E7B13D-4FE1-42D0-8058-84263F63C985}"
+	ProjectSection(SolutionItems) = preProject
+		OtherResources\Analyze Tweets with Hive.txt = OtherResources\Analyze Tweets with Hive.txt
+		OtherResources\Hive Queries for ODBC Driver.txt = OtherResources\Hive Queries for ODBC Driver.txt
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StreamInsight.Demos.Twitter.RealTimeDashboard", "RealTimeDashboard\StreamInsight.Demos.Twitter.RealTimeDashboard.csproj", "{F7A4E00D-AC29-408A-8EB0-510D687634D0}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 7
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://mtcsg.tfspreview.com/defaultcollection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = Common\\StreamInsight.Demos.Twitter.Common.csproj
+		SccProjectName1 = Common
+		SccLocalPath1 = Common
+		SccProjectUniqueName2 = TwitterCEPApplication\\StreamInsight.Demos.Twitter.Client.csproj
+		SccProjectName2 = TwitterCEPApplication
+		SccLocalPath2 = TwitterCEPApplication
+		SccProjectUniqueName3 = ServiceManagement\\ServiceCommon\\ServiceCommon.csproj
+		SccProjectTopLevelParentUniqueName3 = TwitterCepSolution.sln
+		SccProjectName3 = ServiceManagement/ServiceCommon
+		SccLocalPath3 = ServiceManagement\\ServiceCommon
+		SccProjectUniqueName4 = ServiceManagement\\ServiceDeletion\\ServiceDeletion.csproj
+		SccProjectTopLevelParentUniqueName4 = TwitterCepSolution.sln
+		SccProjectName4 = ServiceManagement/ServiceDeletion
+		SccLocalPath4 = ServiceManagement\\ServiceDeletion
+		SccProjectUniqueName5 = ServiceManagement\\ServiceProvisioning\\ServiceProvisioning.csproj
+		SccProjectTopLevelParentUniqueName5 = TwitterCepSolution.sln
+		SccProjectName5 = ServiceManagement/ServiceProvisioning
+		SccLocalPath5 = ServiceManagement\\ServiceProvisioning
+		SccProjectUniqueName6 = RealTimeDashboard\\StreamInsight.Demos.Twitter.RealTimeDashboard.csproj
+		SccProjectName6 = RealTimeDashboard
+		SccLocalPath6 = RealTimeDashboard
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|Mixed Platforms = Debug|Mixed Platforms
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|Mixed Platforms = Release|Mixed Platforms
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BEF3B617-DD2E-4818-816B-16693D6E1F36}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{BEF3B617-DD2E-4818-816B-16693D6E1F36}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{BEF3B617-DD2E-4818-816B-16693D6E1F36}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{BEF3B617-DD2E-4818-816B-16693D6E1F36}.Debug|x86.ActiveCfg = Debug|x86
+		{BEF3B617-DD2E-4818-816B-16693D6E1F36}.Debug|x86.Build.0 = Debug|x86
+		{BEF3B617-DD2E-4818-816B-16693D6E1F36}.Release|Any CPU.ActiveCfg = Release|x86
+		{BEF3B617-DD2E-4818-816B-16693D6E1F36}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{BEF3B617-DD2E-4818-816B-16693D6E1F36}.Release|Mixed Platforms.Build.0 = Release|x86
+		{BEF3B617-DD2E-4818-816B-16693D6E1F36}.Release|x86.ActiveCfg = Release|x86
+		{BEF3B617-DD2E-4818-816B-16693D6E1F36}.Release|x86.Build.0 = Release|x86
+		{9256EE15-E376-4476-8232-914E1378E95D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9256EE15-E376-4476-8232-914E1378E95D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9256EE15-E376-4476-8232-914E1378E95D}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{9256EE15-E376-4476-8232-914E1378E95D}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{9256EE15-E376-4476-8232-914E1378E95D}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{9256EE15-E376-4476-8232-914E1378E95D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9256EE15-E376-4476-8232-914E1378E95D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9256EE15-E376-4476-8232-914E1378E95D}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{9256EE15-E376-4476-8232-914E1378E95D}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{9256EE15-E376-4476-8232-914E1378E95D}.Release|x86.ActiveCfg = Release|Any CPU
+		{41B16466-6066-4C13-9447-D7CF340D287E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{41B16466-6066-4C13-9447-D7CF340D287E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{41B16466-6066-4C13-9447-D7CF340D287E}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{41B16466-6066-4C13-9447-D7CF340D287E}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{41B16466-6066-4C13-9447-D7CF340D287E}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{41B16466-6066-4C13-9447-D7CF340D287E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{41B16466-6066-4C13-9447-D7CF340D287E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{41B16466-6066-4C13-9447-D7CF340D287E}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{41B16466-6066-4C13-9447-D7CF340D287E}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{41B16466-6066-4C13-9447-D7CF340D287E}.Release|x86.ActiveCfg = Release|Any CPU
+		{5419C4D4-E8DB-4DE1-AFC7-0B430CC02926}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5419C4D4-E8DB-4DE1-AFC7-0B430CC02926}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5419C4D4-E8DB-4DE1-AFC7-0B430CC02926}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{5419C4D4-E8DB-4DE1-AFC7-0B430CC02926}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{5419C4D4-E8DB-4DE1-AFC7-0B430CC02926}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{5419C4D4-E8DB-4DE1-AFC7-0B430CC02926}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5419C4D4-E8DB-4DE1-AFC7-0B430CC02926}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5419C4D4-E8DB-4DE1-AFC7-0B430CC02926}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{5419C4D4-E8DB-4DE1-AFC7-0B430CC02926}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{5419C4D4-E8DB-4DE1-AFC7-0B430CC02926}.Release|x86.ActiveCfg = Release|Any CPU
+		{FF2B311B-5ABD-49AA-AC25-05F30CAAB34C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF2B311B-5ABD-49AA-AC25-05F30CAAB34C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF2B311B-5ABD-49AA-AC25-05F30CAAB34C}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{FF2B311B-5ABD-49AA-AC25-05F30CAAB34C}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{FF2B311B-5ABD-49AA-AC25-05F30CAAB34C}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{FF2B311B-5ABD-49AA-AC25-05F30CAAB34C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF2B311B-5ABD-49AA-AC25-05F30CAAB34C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF2B311B-5ABD-49AA-AC25-05F30CAAB34C}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{FF2B311B-5ABD-49AA-AC25-05F30CAAB34C}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{FF2B311B-5ABD-49AA-AC25-05F30CAAB34C}.Release|x86.ActiveCfg = Release|Any CPU
+		{F7A4E00D-AC29-408A-8EB0-510D687634D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F7A4E00D-AC29-408A-8EB0-510D687634D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F7A4E00D-AC29-408A-8EB0-510D687634D0}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{F7A4E00D-AC29-408A-8EB0-510D687634D0}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{F7A4E00D-AC29-408A-8EB0-510D687634D0}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{F7A4E00D-AC29-408A-8EB0-510D687634D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F7A4E00D-AC29-408A-8EB0-510D687634D0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F7A4E00D-AC29-408A-8EB0-510D687634D0}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{F7A4E00D-AC29-408A-8EB0-510D687634D0}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{F7A4E00D-AC29-408A-8EB0-510D687634D0}.Release|x86.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{41B16466-6066-4C13-9447-D7CF340D287E} = {BE84BBBE-84D5-42C8-83EC-CA81F4C0FBA9}
+		{5419C4D4-E8DB-4DE1-AFC7-0B430CC02926} = {BE84BBBE-84D5-42C8-83EC-CA81F4C0FBA9}
+		{FF2B311B-5ABD-49AA-AC25-05F30CAAB34C} = {BE84BBBE-84D5-42C8-83EC-CA81F4C0FBA9}
+		{DBCC05A3-FC4B-4742-B4C2-91269593E006} = {927DBFF8-AE9C-4FE5-8EB5-EF9FA8A8340D}
+		{B7E7B13D-4FE1-42D0-8058-84263F63C985} = {927DBFF8-AE9C-4FE5-8EB5-EF9FA8A8340D}
+	EndGlobalSection
+EndGlobal

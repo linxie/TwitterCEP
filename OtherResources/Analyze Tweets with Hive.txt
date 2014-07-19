@@ -1,0 +1,231 @@
+set hive.exec.dynamic.partition=true;
+set hive.exec.dynamic.partition.mode=nonstrict;
+
+
+drop table raw_tweets;
+create external table raw_tweets ( json_response string ) stored as textfile location '/twitter';
+--create external table raw_tweets ( json_response string ) partitioned by (dat string) stored as textfile;
+--alter table raw_tweets add if not exists partition(dat='2012-09-22') location 'asv://twitter/2012-09-22';
+--alter table raw_tweets add if not exists partition(dat='2012-09-24') location 'asv://twitter/2012-09-24';
+--alter table raw_tweets add if not exists partition(dat='2012-09-25') location 'asv://twitter/2012-09-25';
+--alter table raw_tweets add if not exists partition(dat='2012-09-26') location 'asv://twitter/2012-09-26';
+--alter table raw_tweets add if not exists partition(dat='2012-09-27') location 'asv://twitter/2012-09-27';
+--alter table raw_tweets add if not exists partition(dat='2012-09-28') location 'asv://twitter/2012-09-28';
+--alter table raw_tweets add if not exists partition(dat='2012-10-01') location 'asv://twitter/2012-10-01';
+--alter table raw_tweets add if not exists partition(dat='2012-10-03') location 'asv://twitter/2012-10-03';
+--alter table raw_tweets add if not exists partition(dat='2012-10-07') location 'asv://twitter/2012-10-07';
+--alter table raw_tweets add if not exists partition(dat='2012-10-08') location 'asv://twitter/2012-10-08';
+--alter table raw_tweets add if not exists partition(dat='2012-10-08') location 'asv://twitter/2012-10-09';
+--alter table raw_tweets add if not exists partition(dat='2012-10-08') location 'asv://twitter/2012-10-10';
+--alter table raw_tweets add if not exists partition(dat='2012-10-08') location 'asv://twitter/2012-10-11';
+--alter table raw_tweets add if not exists partition(dat='2012-10-08') location 'asv://twitter/2012-10-13';
+--alter table raw_tweets add if not exists partition(dat='2012-10-08') location 'asv://twitter/2012-10-15';
+
+drop table tweet_details;
+create table tweet_details
+(
+	id bigint,
+	id_str string,
+	created_at string,
+	created_at_date string,
+	created_at_year string,
+	created_at_month string,
+	created_at_day string,
+	created_at_time string,
+	in_reply_to_user_id_str string,
+	text string,
+	contributors string,
+	is_a_retweet boolean,
+	truncated string,
+	coordinates string,
+	source string,
+	retweet_count int,
+	url string,
+	hashtags array<string>,
+	user_mentions array<string>,
+	first_hashtag string,
+	first_user_mention string,
+	screen_name string,
+	name string,
+	followers_count int,
+	listed_count int,
+	friends_count int,
+	lang string,
+	user_location string,
+	time_zone string,
+	profile_image_url string
+)
+partitioned by (partition_key string);
+
+insert overwrite table tweet_details
+partition (partition_key)
+select
+	cast(get_json_object(json_response, '$.id_str') as bigint) as id,		
+	get_json_object(json_response, '$.id_str') as id_str,		
+	get_json_object(json_response, '$.created_at') as created_at,
+	concat(substr (get_json_object(json_response, '$.created_at'),1,10),' ',
+		substr (get_json_object(json_response, '$.created_at'),27,4)) as created_at_date,
+	substr (get_json_object(json_response, '$.created_at'),27,4) as created_at_year,
+	case substr (get_json_object(json_response, '$.created_at'),5,3)
+		when "Jan" then "01"
+		when "Feb" then "02"
+		when "Mar" then "03"
+		when "Apr" then "04"
+		when "May" then "05"
+		when "Jun" then "06"
+		when "Jul" then "07"
+		when "Aug" then "08"
+		when "Sep" then "09"
+		when "Oct" then "10"
+		when "Nov" then "11"
+		when "Dec" then "12" end as created_at_month,
+	substr (get_json_object(json_response, '$.created_at'),9,2) as created_at_day,
+	substr (get_json_object(json_response, '$.created_at'),12,8) as created_at_time,
+	get_json_object(json_response, '$.in_reply_to_user_id_str') as in_reply_to_user_id_str,
+	get_json_object(json_response, '$.text') as text,
+	get_json_object(json_response, '$.contributors') as contributors,
+	(cast (get_json_object(json_response, '$.retweet_count') as int) != 0) as is_a_retweet,
+	get_json_object(json_response, '$.truncated') as truncated,
+	get_json_object(json_response, '$.coordinates') as coordinates,
+	get_json_object(json_response, '$.source') as source,
+	cast (get_json_object(json_response, '$.retweet_count') as int) as retweet_count,
+	get_json_object(json_response, '$.entities.display_url') as url,
+	array(	
+		trim(lower(get_json_object(json_response, '$.entities.hashtags[0].text'))),
+		trim(lower(get_json_object(json_response, '$.entities.hashtags[1].text'))),
+		trim(lower(get_json_object(json_response, '$.entities.hashtags[2].text'))),
+		trim(lower(get_json_object(json_response, '$.entities.hashtags[3].text'))),
+		trim(lower(get_json_object(json_response, '$.entities.hashtags[4].text')))) as hashtags,
+	array(
+		trim(lower(get_json_object(json_response, '$.entities.user_mentions[0].screen_name'))),
+		trim(lower(get_json_object(json_response, '$.entities.user_mentions[1].screen_name'))),
+		trim(lower(get_json_object(json_response, '$.entities.user_mentions[2].screen_name'))),
+		trim(lower(get_json_object(json_response, '$.entities.user_mentions[3].screen_name'))),
+		trim(lower(get_json_object(json_response, '$.entities.user_mentions[4].screen_name')))) as user_mentions,
+	trim(lower(get_json_object(json_response, '$.entities.hashtags[0].text'))) as first_hashtag,
+	trim(lower(get_json_object(json_response, '$.entities.user_mentions[0].screen_name'))) as first_user_mention,
+	get_json_object(json_response, '$.user.screen_name') as screen_name,
+	get_json_object(json_response, '$.user.name') as name,
+	cast (get_json_object(json_response, '$.user.followers_count') as int) as followers_count,
+	cast (get_json_object(json_response, '$.user.listed_count') as int) as listed_count,
+	cast (get_json_object(json_response, '$.user.friends_count') as int) as friends_count,
+	get_json_object(json_response, '$.user.lang') as lang,
+	get_json_object(json_response, '$.user.location') as user_location,
+	get_json_object(json_response, '$.user.time_zone') as time_zone,
+	get_json_object(json_response, '$.user.profile_image_url') as profile_image_url,
+	concat(substr (get_json_object(json_response, '$.created_at'),1,10),' ',
+		substr (get_json_object(json_response, '$.created_at'),27,4)) as partition_key
+
+from raw_tweets
+where (length(json_response) > 500);
+
+-- EXTRACT COORDINATES (LONGITUDE, LATITUDE) FROM THOSE TWEETS THAT ARE GEO-ENABLED
+drop table tweet_coordinates;
+create table tweet_coordinates 
+( 
+	id_str string,
+	coordinate_type string, 
+	longitude float,
+	latitude float
+);
+
+insert overwrite table tweet_coordinates
+select 
+	id_str,
+	get_json_object(coordinates, '$.type') as type, 
+	get_json_object(coordinates, '$.coordinates[0]') as longitude, 
+	get_json_object(coordinates, '$.coordinates[1]') as latitude 
+from tweet_details
+where get_json_object(coordinates, '$.coordinates[1]') is not null;
+
+-- PROCESS HASHTAGS
+drop table tweet_hashtags;
+
+create table tweet_hashtags
+( 
+	id_str string,
+	hashtag string
+)
+partitioned by (tag_index int);
+
+
+insert overwrite table tweet_hashtags partition(tag_index=0)
+select id_str, hashtags[0] as hashtag 
+from tweet_details where hashtags[0] is not null;
+
+insert overwrite table tweet_hashtags partition(tag_index=1)
+select id_str, hashtags[0] as hashtag 
+from tweet_details where hashtags[1] is not null;
+
+insert overwrite table tweet_hashtags partition(tag_index=2)
+select id_str, hashtags[0] as hashtag 
+from tweet_details where hashtags[2] is not null;
+
+insert overwrite table tweet_hashtags partition(tag_index=3)
+select id_str, hashtags[0] as hashtag 
+from tweet_details where hashtags[3] is not null;
+
+insert overwrite table tweet_hashtags partition(tag_index=4)
+select id_str, hashtags[0] as hashtag 
+from tweet_details where hashtags[4] is not null;
+
+--select hashtag, count(*) as hashtag_count from tweet_hashtags group by hashtag order by hashtag_count;
+
+-- PROCESS USER MENTIONS
+drop table tweet_user_mentions;
+
+create table tweet_user_mentions
+( 
+	id_str string,
+	user_mention string
+)
+partitioned by (mention_index int);
+
+
+insert overwrite table tweet_user_mentions partition(mention_index=0)
+select id_str, user_mentions[0] as user_mention 
+from tweet_details where user_mentions[0] is not null
+limit 100;
+
+insert overwrite table tweet_user_mentions partition(mention_index=1)
+select id_str, user_mentions[0] as user_mention 
+from tweet_details where user_mentions[1] is not null
+limit 100;
+
+insert overwrite table tweet_user_mentions partition(mention_index=2)
+select id_str, user_mentions[0] as user_mention 
+from tweet_details where user_mentions[2] is not null
+limit 100;
+
+insert overwrite table tweet_user_mentions partition(mention_index=3)
+select id_str, user_mentions[0] as user_mention 
+from tweet_details where user_mentions[3] is not null
+limit 100;
+
+insert overwrite table tweet_user_mentions partition(mention_index=4)
+select id_str, user_mentions[0] as user_mention 
+from tweet_details where user_mentions[4] is not null
+limit 100;
+
+--select user_mention, count(*) as user_mention_count from tweet_user_mentions group by user_mention order by user_mention_count;
+
+
+-- THE FOLLOWING GENERATES A JAVA EXCEPTION ABOUT NOT ABLE TO READ TASK LOG URL..PROBABALY BUG IN HOA
+-- FOR NOW, WE CAN'T JOIN TWO TABLES TOGETHER
+--select header.tweetid, header.sentiment, details.screen_name, details.followers_count, details.text
+--from tweetinfo header join tweet_details details  
+--where header.tweetid = details.id;
+
+drop table tweeter;
+
+create table tweeter 
+( 
+	screen_name string, 
+	max_followers int, 
+	max_friends int
+);
+
+insert overwrite table tweeter
+select screen_name, max(followers_count) max_followers, max(friends_count) max_friends
+from tweet_details 
+group by screen_name ;

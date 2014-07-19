@@ -1,0 +1,41 @@
+-- TWEET COORDINATES
+select * from tweet_coordinates;
+
+-- TWEET HASHTAGS
+select * from tweet_hashtags where length(id_str) != 0 and id_str is not null and id_str != 'null';
+
+-- TWEET USER MENTIONS
+select * from tweet_user_mentions where length(id_str) != 0 and id_str is not null and id_str != 'null';
+
+-- TWEETER
+select * from  tweeter where length(screen_name) != 0 and screen_name is not null;
+
+-- TWEET SENTIMENT FROM SQL AZURE
+select tweetid as id, cast(tweetid as string) as id_str, sentiment, topic from tweetinfo;
+
+-- TWEET DETAILS - the coalesce and case in the select are to get around a null value bug in hive odbc driver
+select 
+	coalesce(id, 0) as id, 
+	coalesce(retweet_count, 0) as retweet_count, 
+	case 
+		when length(id_str) = 0 then '0'
+		else coalesce(id_str, '0')
+	end as id_str, 
+	case 
+		when length(created_at_date) = 0 then 'Sun Jan 01 9999'
+		else coalesce(created_at_date, 'Sun Jan 01 9999')
+	end as created_at_date, 
+	case 
+		when length(created_at_time) = 0 then '00:00:00'
+		else coalesce(created_at_time, '00:00:00')
+	end as created_at_time, 
+	case 
+		when length(screen_name) = 0 then 'empty'
+		else coalesce(screen_name, 'empty')
+	end as screen_name,
+	case 
+		when length(text) = 0 then 'empty'
+		else coalesce(text, 'empty')
+	end as tweet_text
+from tweet_details
+where length(id_str) != 0 and id_str is not null and id_str != 'null' and id_str != 'NULL' and id_str != 'Sydney' and id_str != 'Arizona';
